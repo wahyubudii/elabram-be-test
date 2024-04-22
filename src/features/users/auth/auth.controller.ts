@@ -18,11 +18,11 @@ import {
 import { AuthService } from './auth.service';
 import { User, UserInfo } from '../../../common/decorators/user.decorator';
 
-@Controller('users')
+@Controller('user')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post('/signup')
+  @Post('/create')
   async signup(@Body() body: SignupDto) {
     return this.authService.signup(body);
   }

@@ -16,14 +16,14 @@ import { User, UserInfo } from 'src/common/decorators/user.decorator';
 export class CompanyController {
   constructor(private readonly companyService: CompanyService) {}
 
-  @Post()
+  @Post('/create')
   async createCompany(@User() user: UserInfo, @Body() body: createCompanyDto) {
     if (!user) throw new UnauthorizedException();
 
     return this.companyService.createCompany(user.id, body);
   }
 
-  @Get()
+  @Get('/list')
   async getCompany(@User() user: UserInfo) {
     if (!user) throw new UnauthorizedException();
 
@@ -37,23 +37,21 @@ export class CompanyController {
     return this.companyService.getCompanyById(user.id, companyId);
   }
 
-  @Put(':id')
-  async updateCompany(
-    @User() user: UserInfo,
-    @Param('id') companyId: number,
-    @Body() body: updateCompanyDto,
-  ) {
+  @Put('/edit')
+  async updateCompany(@User() user: UserInfo, @Body() body: updateCompanyDto) {
     if (!user) throw new UnauthorizedException();
-    await this.companyService.getCompanyById(user.id, companyId);
 
-    return this.companyService.updateCompany(companyId, body);
+    await this.companyService.getCompanyById(user.id, body.id);
+
+    return this.companyService.updateCompany(body);
   }
 
-  @Delete(':id')
-  async deleteCompany(@User() user: UserInfo, @Param('id') companyId: number) {
+  @Delete('/delete')
+  async deleteCompany(@User() user: UserInfo, @Body() { id }: { id: number }) {
     if (!user) throw new UnauthorizedException();
-    await this.companyService.getCompanyById(user.id, companyId);
 
-    return this.companyService.deleteCompany(companyId);
+    await this.companyService.getCompanyById(user.id, id);
+
+    return this.companyService.deleteCompany(id);
   }
 }

@@ -22,7 +22,7 @@ async function bootstrap() {
   app.setGlobalPrefix('api/v1/');
 
   await app.listen(port);
-  console.log(`listening at http://localhost:${port}`);
+  console.log(`Listening at http://localhost:${port}`);
   console.log(`ENV: ${process.env.NODE_ENV}`);
 }
 bootstrap();

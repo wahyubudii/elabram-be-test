@@ -7,6 +7,10 @@ export class createCompanyDto {
 }
 
 export class updateCompanyDto {
+  @IsNumber()
+  @IsNotEmpty()
+  id: number;
+
   @IsString()
   @IsNotEmpty()
   companyName: string;

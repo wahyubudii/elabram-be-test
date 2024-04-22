@@ -12,6 +12,7 @@ interface CreateCompanyParams {
 }
 
 interface UpdateCompanyParams {
+  id: number;
   companyName: string;
 }
 
@@ -75,14 +76,14 @@ export class CompanyService {
     }
   }
 
-  async updateCompany(companyId: number, { companyName }: UpdateCompanyParams) {
+  async updateCompany({ id, companyName }: UpdateCompanyParams) {
     const company = await this.prismaService.company.findUnique({
-      where: { id: companyId },
+      where: { id },
     });
     if (!company) throw new NotFoundException('Company not found!');
 
     await this.prismaService.company.update({
-      where: { id: companyId },
+      where: { id },
       data: { company_name: companyName },
     });
 
@@ -95,9 +96,9 @@ export class CompanyService {
     return response;
   }
 
-  async deleteCompany(companyId: number) {
+  async deleteCompany(id: number) {
     await this.prismaService.company.delete({
-      where: { id: companyId },
+      where: { id },
     });
 
     const response = {
