@@ -2,15 +2,14 @@ import {
   ConflictException,
   HttpException,
   Injectable,
-  NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { convertToJakartaTime } from 'src/utils/convert-time';
 import {
   generateHashPassword,
   generateHashToken,
-} from 'src/utils/generate-hash';
+} from '../../common/utils/generate-hash';
+import { convertToJakartaTime } from '../../common/utils/convert-time';
 
 interface SignupParams {
   email: string;
