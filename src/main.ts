@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import helmet from 'helmet';
-import { ValidationFilter } from './validation/validation.filter';
+import { ValidationFilter } from './common/filters/exceptions.filter';
 
 async function bootstrap() {
   const port = process.env.PORT || 3000;

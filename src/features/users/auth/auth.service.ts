@@ -4,12 +4,12 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from 'src/config/prisma/prisma.service';
 import {
   generateHashPassword,
   generateHashToken,
-} from '../../common/utils/generate-hash';
-import { convertToJakartaTime } from '../../common/utils/convert-time';
+} from '../../../utils/generate-hash';
+import { convertToJakartaTime } from '../../../utils/convert-time';
 
 interface SignupParams {
   email: string;
@@ -123,7 +123,7 @@ export class AuthService {
     };
   }
 
-  async signout(userId: number) {
+  async logout(userId: number) {
     await this.prismaService.user.update({
       where: { id: userId },
       data: { token: '' },

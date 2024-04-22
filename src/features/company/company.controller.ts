@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { CompanyService } from './company.service';
 import { createCompanyDto, updateCompanyDto } from './dto/company.dto';
-import { User, UserInfo } from 'src/users/decorators/user.decorator';
+import { User, UserInfo } from 'src/common/decorators/user.decorator';
 
 @Controller('company')
 export class CompanyController {

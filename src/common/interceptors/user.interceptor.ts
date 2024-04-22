@@ -6,8 +6,8 @@ import {
   NestInterceptor,
   UnauthorizedException,
 } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { convertToUnixTimestamp } from '../../common/utils/convert-to-unix';
+import { PrismaService } from 'src/config/prisma/prisma.service';
+import { convertToUnixTimestamp } from '../../utils/convert-to-unix';
 
 @Injectable()
 export class UserInterceptor implements NestInterceptor {

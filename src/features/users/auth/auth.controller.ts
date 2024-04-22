@@ -16,7 +16,7 @@ import {
   UpdateProfileDto,
 } from './dto/users.dto';
 import { AuthService } from './auth.service';
-import { User, UserInfo } from '../decorators/user.decorator';
+import { User, UserInfo } from '../../../common/decorators/user.decorator';
 
 @Controller('users')
 export class AuthController {
@@ -32,12 +32,12 @@ export class AuthController {
     return this.authService.signin(body);
   }
 
-  @Post('/signout')
+  @Post('/logout')
   @HttpCode(200)
-  async signout(@User() user: UserInfo) {
+  async logout(@User() user: UserInfo) {
     if (!user) throw new UnauthorizedException();
 
-    return this.authService.signout(user.id);
+    return this.authService.logout(user.id);
   }
 
   @Get('/me')

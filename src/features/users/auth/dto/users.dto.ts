@@ -44,9 +44,11 @@ export class UpdateProfileDto {
 export class UpdatePasswordDto {
   @IsNotEmpty()
   @IsString()
+  @MinLength(6)
   oldPassword: string;
 
   @IsNotEmpty()
   @IsString()
+  @MinLength(6)
   newPassword: string;
 }
